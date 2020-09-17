@@ -1,0 +1,695 @@
+	 	 	 	
+1.	Use Random Function ((RANDOM)) to get single Digit
+
+	#!/bin/bash
+
+		num=`echo $((RANDOM%10))`
+
+		echo $num
+
+	output:
+		3,5,8,5........
+2. User random to get DICE Number between 1 to 6
+
+	
+	#!/bin/bash
+
+	num=`echo $((RANDOM%6+1))`
+
+	echo $num
+Output:
+	3,3,5,2......
+
+
+
+
+
+
+3. Add two random dice number and print the result
+	#!/bin/bash -x
+
+	Dice1=`echo $((RANDOM%6+1))`
+	Dice2=`echo $((RANDOM%6+1))`
+
+	Result=`expr $Dice1 + $Dice2`
+	
+	echo $Result
+	
+	Output:
+		eVal.sh
+		++ echo 4
+		+ Dice1=4
+		++ echo 4
+		+ Dice2=4
+		++ expr 4 + 4
+		+ Result=8
+		+ echo 8
+		8
+
+
+
+
+
+
+4. Write the program that reads 5 Random 2 digit values, then find their sum and the average
+	#!/bin/bash -x
+
+	RANDOM=$$
+	sum=0
+	for i in `seq 5`
+	do
+		 genVal=`echo $((RANDOM%100))`
+		sum=$((sum + genVal));
+		avg=$((sum / 5));
+
+	done
+	echo "sum of generated value = $sum"
+	echo "Average of generated value = $avg"
+
+Output:
+	sum of generated value = 247
+	Average of generated value = 49
+
+
+
+
+
+
+
+
+5. Unit Conversion
+	a.	1ft = 12 in then 42 in =? ft
+	
+		#!/bin/bash
+
+		read -p "Enter the inch value to convert" in;
+
+		ft=`echo $(($in/12))`
+
+		echo "$in inch : Value in feet = $ft"
+
+	b. Rectangular plot of 60 feet * 40 feet in meter
+
+		#!/bin/bash -x
+		read -p "Enter first value in feet" n1
+		read -p "Enter second value in feet" n2
+
+		sqre=`echo $(($n1*$n2))`
+		meter=`echo " scale=1; $sqre / 3.28" | bc`
+
+		echo "Rectangle Plot of $n1 feet * $n2 feet = $meter meters"
+	Output:
+		
+		Enter first value in feet60
+		Enter second value in feet40
+		Rectangle Plot of 60 feet * 40 feet = 731.7 meters
+
+c. Calculate the area of 25 such plots in acres
+
+
+Selection Practice Problems with if and else
+
+1. write a program that reads 5 random 3 digits value and then output the minimum and maximum value
+
+	#!/bin/bash
+
+	i=1
+	max=0
+	min=0
+
+	while [ $i -le "5" ]
+	do
+		num=`echo $((RANDOM%1000))`
+		echo $num
+		if [ $i -eq 1 ]
+		then
+			max=$num
+			min=$num
+		else
+			if [ $num -gt $max ]
+			then
+			max=$num
+			fi
+			if [ $num -lt $min ]
+			then
+			min=$num
+			fi
+		fi
+	i=$((i + 1))
+	done
+
+echo "Maximum Among them are : $max"
+echo "Minimum among them are : $min"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2. Write a program that take days and month from command line and print true if day of month in between march 20 to jun 20.
+
+	#!/bin/bash
+
+	read -p "Enter the Date" date
+	read -p "Enter the month" month
+	if [[ $month -eq "3" && $date -gt "20" || $month -gt "3" ]]
+	then
+		if [[ $month -eq "6" && $date -lt "20" || $month -lt "6" ]]
+		then
+			echo "true $month / $date"
+		else
+		echo "False"
+		fi
+	else
+		echo "false $month / $date"
+	fi
+
+Output:
+	Enter the Date4
+	Enter the month4
+	true 4 / 4
+	
+
+
+3. Write a program that takes a year as input and outputs the year as a leap year or not. A leap year check for four digit number divisible by 4and not unless divisible by 400
+
+#!/bin/bash
+
+read -p "Enter the year: " year
+if [ $((year%400)) -eq 0 ]
+then
+echo "$year is leap year"
+elif [ $((year%100)) == 0 ]
+then
+echo "$year is not a leap year"
+elif [ $((year%4)) -eq 0 ]
+then
+echo "$year is leap year"
+else
+echo "$year is not leap year"
+fi
+Output:
+	Enter the year: 2016
+2016 is leap year
+
+
+
+
+
+4. Write a program to simulate a coin flip and print out “HEAD” or “TAIL” accordingly
+
+	#!/bin/bash -x
+
+outcome=`echo $((RANDOM%2))`;
+if [ $outcome -eq "0" ]
+then
+echo "TAIL"
+else
+echo "HEAD"
+fi
+
+Output:
+	++ echo 1
++ outcome=1
++ '[' 1 -eq 0 ']'
++ echo HEAD
+HEAD
+
+
+Selection practice with if, elif, and else
+
+
+
+
+
+1. Read the single digit number and write the number in word
+
+	#!/bin/bash
+
+read -p "Enter the number" num
+if [ $num -eq "0" ]
+then
+echo "Zero"
+elif [ $num -eq "1" ]
+then
+echo "one"
+elif [ $num -eq "2" ]
+then
+echo "Two"
+elif [ $num -eq "3" ]
+then
+echo "Three"
+elif [ $num -eq "4" ]
+then
+echo "Four"
+elif [ $num -eq "5" ]
+then
+echo "Five"
+elif [ $num -eq "6" ]
+then
+echo "Six"
+elif [ $num -eq "7" ]
+then
+echo "Seven"
+elif [ $num -eq "8" ]
+then
+echo "Eight"
+else
+echo "Nine"
+fi
+
+Output
+	Enter the number4
+	Four
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2. Read a number and display the week day
+
+	#!/bin/bash
+
+read -p "Enter the day" num
+if [ $num -eq "1" ]
+then
+echo "Monday"
+elif [ $num -eq "2" ]
+then
+echo "Tuesday"
+elif [ $num -eq "3" ]
+then
+echo "Wednesday"
+elif [ $num -eq "4" ]
+then
+echo "Thuresday"
+elif [ $num -eq "5" ]
+then
+echo "Friday"
+elif [ $num -eq "6" ]
+then
+echo "Saturday"
+elif [ $num -eq "7" ]
+then
+echo "Sunday"
+else
+echo "Enter valid OPtion"
+fi
+
+Output:
+	Enter the day3
+	Wednesday
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3) Read a number 1, 10, 100, 1000 etc and display in unit ten, hundred ect
+
+	#!/bin/bash
+
+read -p "Enter the value" num
+if [[ $num -ge "1" && $nume -lt "10" ]]
+then
+echo "One"
+elif [[ $num -ge "10" && $num -lt "100" ]]
+then
+echo "Ten"
+elif [[ $num -ge "100" && $num -lt "1000" ]]
+then
+echo "Hundred"
+elif [[ $num -ge "1000" && $num -lt "10000" ]]
+then
+echo "Thausend"
+elif [[ $num -ge "10000" && $num -lt "100000" ]]
+then
+echo "Ten thausend"
+elif [[ $num -ge "100000" && $num -lt "100000" ]]
+then
+echo "Lacks"
+elif [[ $num -ge "1000000" && $num -lt "10000000" ]]
+then
+echo "ten lack"
+else
+echo "please enter in between 1 to ten lacks"
+fi
+
+Output:
+	Enter the value 1010
+	thausend
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4. Enter 3 numbers do following arithmetic operations and find the one that is maximum and minimum
+#!/bin/bash -x
+
+read -p "Enter First Number : " num1
+read -p "Enter Second Number : " num2
+read -p "Enter thierd Number : " num3
+
+oper1=`echo $(( $num1 + $num2 * $num3 ))`
+oper2=`echo $(( $num3 + $num1 / $num2 ))`
+oper3=`echo $(( $num1 % $num2 + $num3 ))`
+oper4=`echo $(( $num1 * $num2 + $num3 ))`
+
+if [[ $oper1 -gt $oper2 && $oper1 -gt $oper3 && $oper1 -gt $oper4 ]]
+then
+echo "a+b*c is greate then others $oper1"
+elif [[ $oper2 -gt $oper1 && $oper2 -gt $oper3 && $oper2 -gt $oper4 ]]
+then
+echo "c+a/b is greate then others $oper2"
+elif [[ $oper3 -gt $oper1 && $oper3 -gt $oper2 && $oper3 -gt $oper4 ]]
+then
+echo "a%b+c is greate then others $oper3"
+else
+echo "a*b+c is greater then others $oper4"
+fi
+
+
+if [[ $oper1 -lt $oper2 && $oper1 -lt $oper3 && $oper1 -lt $oper4 ]]
+then
+echo "a+b*c is less then others $oper1"
+elif [[ $oper2 -lt $oper1 && $oper2 -lt $oper3 && $oper2 -lt $oper4 ]]
+then
+echo "c+a/b is less then others $oper2"
+elif [[ $oper3 -lt $oper1 && $oper3 -lt $oper2 && $oper3 -lt $oper4 ]]
+then
+echo "a%b+c is less then others $oper3"
+else
+echo "a*b+c is less then others $oper4"
+fi
+
+Output:
+	+ read -p 'Enter First Number : ' num1
+Enter First Number : 33
++ read -p 'Enter Second Number : ' num2
+Enter Second Number : 44
++ read -p 'Enter thierd Number : ' num3
+Enter thierd Number : 55
+++ echo 2453
++ oper1=2453
+++ echo 55
++ oper2=55
+++ echo 88
++ oper3=88
+++ echo 1507
++ oper4=1507
++ [[ 2453 -gt 55 ]]
++ [[ 2453 -gt 88 ]]
++ [[ 2453 -gt 1507 ]]
++ echo 'a+b*c is greate then others 2453'
+a+b*c is greate then others 2453
++ [[ 2453 -lt 55 ]]
++ [[ 55 -lt 2453 ]]
++ [[ 55 -lt 88 ]]
++ [[ 55 -lt 1507 ]]
++ echo 'c+a/b is less then others 55'
+c+a/b is less then others 55
+
+
+
+Selection operator Problems with case statement
+
+
+
+
+
+
+
+
+
+
+1. Read the Single digit number and write the number in word using case
+
+	#!/bin/bash
+
+read -p "Enter the number" num
+case $num in
+0)
+echo "Zero"
+;;
+1)
+echo "One"
+;;
+
+2)
+echo "Two"
+;;
+3)
+echo "Three"
+;;
+
+4)
+echo "Four"
+;;
+
+5)
+echo "Five"
+;;
+6)
+
+echo "Six"
+;;
+7)
+
+echo "Seven"
+;;
+8)
+
+echo "Eight"
+;;
+9)
+echo "Nine"
+;;
+*)
+echo "Please Enter Single digit value"
+;;
+esac
+
+Output:
+	Enter the number4
+	Four
+
+
+2. Read a number and display weekdays (sum,mon...........)
+
+#!/bin/bash
+
+read -p "Enter the day" num
+case $num in
+1)
+echo "Monday"
+;;
+
+2)
+echo "Tuesday"
+;;
+3)
+echo "Wednesday"
+;;
+4)
+
+echo "Thuresday"
+;;
+5)
+echo "Friday"
+;;
+6)
+echo "Saturday"
+;;
+7)
+echo "Sunday"
+;;
+*)
+echo "Enter valid OPtion between 1 to 7"
+esac
+
+Output:
+	Enter the day3
+	Wednesday
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3. Read a number 1,10,100.... and display unit, ten, hundred .......
+
+#!/bin/bash
+
+read -p "Enter the number" num
+case $num in
+1)
+echo "one"
+;;
+10)
+echo "Ten"
+;;
+
+1000)
+echo "Thausend"
+;;
+10000)
+echo "Ten thausend"
+;;
+
+100000)
+echo "lack"
+;;
+
+1000000)
+echo "ten lack"
+;;
+10000000)
+
+echo "one crore"
+;;
+100000000)
+
+echo "ten crore"
+;;
+*)
+echo "Please Enter valid option"
+;;
+esac
+
+OUTPUT
+	Enter the number10000
+	Ten thausend
+
+
+
+
+
+
+
+
+
+
+4. write a program that takes user input and does unit conversion of different length unit
+1)	Feet to Inch		2)	Inch to Feet
+2)	Feet to Meter		4) 	Meter to feet
+
+#!/bin/bash
+
+echo "Please talk to me ... Who is this ......"
+read name
+while :
+do
+echo "1 for feet to inch : " " Enter 2 for inch to feet " " Enter 3 for feet to meter : " >
+read INPUT_STRING
+case $INPUT_STRING in
+1)
+echo "Enter Feet to convert: "
+read feet;
+
+inch=`echo "scale=1;$feet * 12"|bc`
+echo "$feet feet : $inch inch"
+;;
+2)
+echo "Enter inches to convert into feet: "
+read a;
+feet=`echo "scale=1;$a / 12"|bc`;
+echo "$a inch = $feet feet"
+;;
+3)
+echo "Enter the feet to convert : "
+read a;
+
+meter=`echo "scale=1; $a / 3.28" | bc`;
+echo "$a feet : $meter meter"
+;;
+4)
+echo "Enter the meter to convert : "
+read a;
+
+div=`echo "scale=1; $a * 3.28" | bc`
+echo "div value : $div"
+;;
+
+
+bye)
+echo "See you again! $name"
+break
+;;
+*)
+echo "Sorry $name , I don't understand"
+;;
+esac
+done
+echo "That's all folks!"
+
+
+Output:
+	Please talk to me ... Who is this ......
+Pawan
+1 for feet to inch : Enter 2 for inch to feet Enter 3 for feet to meter : Enter 4 to convert meter to feet Enter bye for quit the program
+3
+Enter the feet to convert :
+33
+33 feet : 10.0 meter
+1 for feet to inch : Enter 2 for inch to feet Enter 3 for feet to meter : Enter 4 to convert meter to feet Enter bye for quit the program
+bye
+See you again! Pawan
+That's all folks!
+
+
